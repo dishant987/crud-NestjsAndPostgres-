@@ -58,6 +58,36 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## REST API Endpoints
+
+The `UserController` provides the following endpoints:
+
+- **Create a User:** `POST /user/createUser`  
+  Allows the creation of a new user.
+
+- **Login a User:** `POST /user/login`  
+  Authenticates a user and provides a JWT token upon successful login.
+
+- **Get All Users:** `GET /user/getusers`  
+  Retrieves a list of all registered users.
+
+- **Get a User by ID:** `GET /user/getUserById/:id`  
+  Retrieves details of a specific user by their ID.
+
+- **Update a User:** `PUT /user/updateUser/:id`  
+  Updates the information of a user identified by their ID.
+
+- **Delete a User:** `DELETE /user/deleteUser/:id`  
+  Deletes a user from the system based on their ID.
+
+## Services and Packages Used
+
+- **@nestjs/common:** Core framework of NestJS, providing essential utilities and decorators.
+- **typeorm:** Object-relational mapper (ORM) used for managing database interactions.
+- **bcrypt:** Library used for hashing passwords to ensure secure storage.
+- **@nestjs/jwt:** Provides utilities for creating and validating JSON Web Tokens (JWTs) for user authentication.
+
+
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
