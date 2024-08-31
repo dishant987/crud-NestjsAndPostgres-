@@ -3,25 +3,20 @@ import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
-  @IsNotEmpty()
-  name: string;
+  name?: string;
 
   @IsEmail()
-  @IsNotEmpty()
-  email: string;
+  email?: string;
 
   @IsString()
-  @IsNotEmpty()
-  password: string;
+  password?: string;
 
   @IsString()
-  @IsNotEmpty()
-  mobile: string;
+  mobile?: string;
 
   @IsString()
-  @IsNotEmpty()
-  gender: string;
+  gender?: string;
 
   @Transform(({ value }) => value && new Date(value))
-  date_of_birth: Date;
+  date_of_birth?: Date;
 }

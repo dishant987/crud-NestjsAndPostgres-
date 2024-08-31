@@ -93,8 +93,31 @@ export class UserService {
   }
 
   //updateuser
-  async updateUser() {
+  async updateUser(id: string, data: Partial<CreateUserDto>) {
     try {
+      // Find the user by ID
+      const user = await this.manager.findOneBy(UserEntity, { id });
+
+      if (!user) {
+        throw new Error(`User not found`);
+      }
+
+      // Update user properties if they are provided in the data object
+      if (data.name) user.name = data.name;
+      if (data.email) user.email = data.email;
+      if (data.mobile) user.mobile = data.mobile;
+      if (data.gender) user.gender = data.gender;
+      if (data.date_of_birth) user.date_of_birth = data.date_of_birth;
+
+      // If a new password is provided, hash it before updating
+      if (data.password) {
+        user.password = await bcrypt.hash(data.password, this.saltRounds);
+      }
+
+      // Save the updated user back to the database
+      await this.manager.save(UserEntity, user);
+
+      return { message: 'User updated successfully', user };
     } catch (error) {
       throw new NotFoundException(`${error.message}`);
     }
